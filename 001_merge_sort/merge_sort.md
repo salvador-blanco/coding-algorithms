@@ -1,0 +1,2 @@
+#Merge Sort Implementation
+This is my implementation of the Merge Sort algorithm in Python. Merge Sort is a divide-and-conquer algorithm that divides the input list into two halves, recursively sorts both halves, and finally merges the two sorted halves into a single sorted list.
