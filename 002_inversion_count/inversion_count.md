@@ -1,0 +1,1 @@
+The inversion_count algorithm is a modification of the merge_sort algorithm, designed to calculate the number of inversions in an array. An inversion is defined as a pair of elements in an array where the indices of the first element are less than those of the second, but the first element is greater than the second.
