@@ -1,0 +1,2 @@
+#Quick Sort Algorithm
+This document outlines my implementation of the Quick Sort algorithm in Python, utilizing in-place sorting. Quick Sort is a divide-and-conquer algorithm that sorts an array by partitioning it into smaller sub-arrays based on a pivot element selected from the array
