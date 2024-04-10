@@ -1,7 +1,13 @@
 def gauss_multiplication(x, y):
     
+    
+    len_xy = len(str(x))
+    
+    if len_xy <=1 or len(str(y)):
+        return x*y
+    
     x, y = str(x), str(y)
-    len_xy = len(x)
+
     x0, x1 = x[0:len_xy//2], x[len_xy//2:]
     y0, y1 = y[0:len_xy//2], y[len_xy//2:]
 
@@ -17,13 +23,15 @@ def gauss_multiplication(x, y):
         w = (x1 + x0)*(y1 + y0)
 
     z = w - (u+v)
-    p = u*(10**len_xy) + z*(10**(len_xy//2)) + v
+    p1 =  u*(10**len_xy)
+    p2 = z*(10**(len_xy//2))
+    p = +  p1 + p2 + v
 
     return p
 
 def main():
-    a = 1234
-    b = 5678
+    a = 121
+    b = 56
     p = gauss_multiplication(a,b) #7 006 652
     print(p)
 if __name__ == "__main__":
