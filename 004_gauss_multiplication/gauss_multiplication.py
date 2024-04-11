@@ -2,43 +2,48 @@ import math
 
 def gauss_multiplication(x, y):
     
-    
-    len_xy = max(len(str(x)), len(str(y)))
-    len_xy_min = min(len(str(x)), len(str(y)))
-    
-    if len(str(x)) <=1 or len(str(y)) <= 1:
-        return x*y
-    
+
     x, y = str(x), str(y)
     
-    x0, x1 = x[0:math.ceil(len(x)/2)], x[math.ceil(len(x)/2):]
-    y0, y1 = y[0:math.ceil(len(y)/2)], y[math.ceil(len(y)/2):]
+    len_x = len(x)
+    len_y = len(y)
+    
+    if len_x <=1 or len_y <= 1:
+        return int(x)*int(y)
 
-    x1, x0, y1, y0 = int(x0), int(x1), int(y0), int(y1)
+    len_xy = min(len_x, len_y)
+    m = math.ceil(len_xy/2)
+    
+    x1, x0 = x[0:-m], x[-m:]
+    y1, y0 = y[0:-m], y[-m:]
+
+    x0, x1, y0, y1 = int(x0), int(x1), int(y0), int(y1)
 
     if len_xy>2:
-        u = gauss_multiplication(x1, y1)
-        v = gauss_multiplication(x0, y0)
-        w = gauss_multiplication(x1+x0, y1+y0)
+        z2 = gauss_multiplication(x1, y1)
+        z0 = gauss_multiplication(x0, y0)
+        z1 = gauss_multiplication(x1+x0, y1+y0) - z2 - z0
     else:
-        u = x1*y1
-        v = x0*y0
-        w = (x1 + x0)*(y1 + y0)
-
-    z = w -u -v
-    p1 =  u*(10**len_xy_min)
-    p2 = z*(10**(len_xy_min//2))
-    p = +  p1 + p2 + v
+        z2 = x1*y1
+        z0 = x0*y0
+        z1 = (x1 + x0)*(y0 + y1) - z2 -z0
+        
+    p1 = int(str(z2) + "0"*2*m ) #z2*(10**m)**2
+    p2 = int(str(z1) + "0"*1*m ) #z1*(10**m)**1
+    p3 = z0 #z0*(10**m)**0
+    p = p1 + p2 + p3
 
     return p
 
-
 def main():
-    a = 23
-    b = 345
+    import time
 
-    p = gauss_multiplication(a,b) #7 006 652
-    print(p)
-
+    a = 234324
+    b = 567556
+    
+    p = gauss_multiplication(a,b)
+    
+    print(f"Expected resutl: {a*b}")
+    print(f"Karatsuba mult esult: {p}")
 if __name__ == "__main__":
     main()
