@@ -20,6 +20,7 @@ def dfs_topological_sort(graph):
             dfs_path = dfs(graph, node, unsen_nodes)
             print(f"Node {node}: {dfs_path}")
             unsen_nodes.remove(node)
+            
     return topological_sequence
 
 
@@ -32,8 +33,7 @@ def dfs(graph, starting_node, unsen_nodes = [], ab_path = []):
         if adjacent_node in unsen_nodes:
             ab_path.append(adjacent_node)
             unsen_nodes.remove(adjacent_node)
-            dfs(graph, adjacent_node, unsen_nodes, ab_path)
-            
+            dfs(graph, adjacent_node, unsen_nodes, ab_path)     
     
     return ab_path
 
