@@ -16,20 +16,30 @@ class Graph():
         for node_key in self.adjacency_list:
             print(f"node: {node_key} adjacent nodes: {self.adjacency_list[node_key]}")
 
+    def reverse_graph(self,):
+        new_graph = Graph(len(self.nodes))
+        for node, adjacent_nodes in self.adjacency_list.items():
+            for adjacent_node in adjacent_nodes:
+                new_graph.add_edge(adjacent_node, node)
+        return new_graph
+
 def generate_graph_2():
-    graph = Graph(6)
+    graph = Graph(8)
     
     # Deffine the graph
     # --------------------
+    graph.add_edge(0, 1)
+    
+    graph.add_edge(1, 2)
+    graph.add_edge(1, 3)
+    graph.add_edge(1, 4)
+    graph.add_edge(2, 0)
     graph.add_edge(2, 3)
-    graph.add_edge(3, 1)
-
-    graph.add_edge(4, 1)
-    graph.add_edge(4, 0)
-
-    graph.add_edge(5, 0)
-    graph.add_edge(5, 2)
-
+    graph.add_edge(4, 5)
+    graph.add_edge(4, 6)
+    graph.add_edge(5, 7)
+    graph.add_edge(6, 5)
+    graph.add_edge(7, 6)
 
     # --------------------
     return graph
@@ -40,15 +50,11 @@ def generate_graph_1():
     # Deffine the graph
     # --------------------
     graph.add_edge(0, 1)
-    graph.add_edge(0, 2)
-
-    graph.add_edge(1, 3)
-    graph.add_edge(1, 4)
+    graph.add_edge(1, 2)
 
     graph.add_edge(2, 3)
-    graph.add_edge(4, 3)
-
-
+    graph.add_edge(3, 4)
+    graph.add_edge(4, 2)
     # --------------------
     return graph
 
