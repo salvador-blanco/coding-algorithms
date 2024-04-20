@@ -25,8 +25,8 @@ def run_dfs(graph , starting_node , second_dfs_run = False, unexplored_nodes = N
     for adjacent_node in graph.adjacency_list[starting_node]: 
         if adjacent_node in unexplored_nodes:
             if run_dfs(graph, adjacent_node, second_dfs_run, unexplored_nodes, visited_sequence):
-                visited_sequence.append(starting_node)
                 return visited_sequence  
+    visited_sequence.append(starting_node)
 
     if unexplored_nodes:
         starting_node = unexplored_nodes[0]
