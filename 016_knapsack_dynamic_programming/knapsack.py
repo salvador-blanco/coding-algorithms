@@ -22,7 +22,6 @@ import random
 # Expected weight = 5
 #treasure = {0:(2,5), 1:(3,5)} # (Value, Weight)
 
-
 def main():
     treasure = {i: (random.randint(1, 5), random.randint(1, 3)) for i in range(35)}
     knapsack_capasity = 10
@@ -37,7 +36,6 @@ def loot(treasure, knapsack_capasity, total_loot = None):
     if not treasure:
         return total_loot
     
-
     temporal_treasure = treasure.copy()
     key, (value, weight) = temporal_treasure.popitem()
 
