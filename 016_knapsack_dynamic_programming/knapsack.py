@@ -1,3 +1,4 @@
+import random
 # n = 5: Number of items.
 # W = 6: Maximum capacity of the knapsack.
 # Items:
@@ -21,33 +22,32 @@
 # Expected weight = 5
 #treasure = {0:(2,5), 1:(3,5)} # (Value, Weight)
 
-
 def main():
-    treasure = {0:(5,3), 1:(5,2), 2:(4,1), 3:(2,1), 4:(3,2)} # (Value, Weight)
-    knapsack_capasity = 6
+    treasure = {i: (random.randint(1, 5), random.randint(1, 3)) for i in range(35)}
+    knapsack_capasity = 10
     total_loot = loot(treasure, knapsack_capasity) # line 15
     print(total_loot)
 
-def loot(treasure, knapsack_capasity, total_loot = []):
+def loot(treasure, knapsack_capasity, total_loot = None):
 
+    if total_loot == None:
+        total_loot = []
+
+    if not treasure:
+        return total_loot
     
     temporal_treasure = treasure.copy()
     key, (value, weight) = temporal_treasure.popitem()
 
-    if len(temporal_treasure) < 1:
-        if knapsack_capasity >= weight:
-            return max(total_loot, total_loot + [value])
-        else:
-            return [0]
-
     #include the item
-    loot_no_item = loot(temporal_treasure, knapsack_capasity)
+    loot_excluding = loot(temporal_treasure, knapsack_capasity)
+    
     #don't include the item
     if knapsack_capasity >= weight:
-        loot_with_item = loot(temporal_treasure, knapsack_capasity-weight, total_loot + [value])
+        loot_including = loot(temporal_treasure, knapsack_capasity-weight, total_loot + [value])
     else:
-        loot_with_item = loot_no_item
-    return max(loot_no_item, loot_with_item, key=sum)#
+        loot_including = loot_excluding
+    return max(loot_excluding, loot_including, key=sum)
 
 if __name__ == "__main__":
     main() # line 28
