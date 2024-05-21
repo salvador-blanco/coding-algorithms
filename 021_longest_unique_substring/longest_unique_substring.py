@@ -14,8 +14,7 @@ class Solution:
                 else:
                     r += 1
                     if r-l > max_len:
-                        max_len = r-l
-                     
+                        max_len = r-l                     
             return max_len
                           
     
