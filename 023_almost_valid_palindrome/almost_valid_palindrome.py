@@ -1,5 +1,3 @@
-import re
-
 def main():
     tester = Solution()
     input_s = "abca"
