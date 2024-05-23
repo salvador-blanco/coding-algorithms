@@ -7,22 +7,15 @@ class ListNode:
 
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        try:
-            head.next.next
-        except AttributeError:
-            return head
-        
         current_node = head
-        next_node = head.next
-        current_node.next = None
-        while next_node.next:
-            temp_node = next_node
-            next_node = temp_node.next
-            temp_node.next = current_node
-            current_node = temp_node
-        next_node.next = current_node
+        previous_node = None
+        while current_node:
+            next_node = current_node.next
+            current_node.next = previous_node
+            previous_node = current_node
+            current_node = next_node
+        return head
 
-        return next_node
     
 def print_linked_list(head):
     while head:
@@ -31,9 +24,11 @@ def print_linked_list(head):
 
 def main():
     # Test case 1: [1,2,3,4,5]
-    head = ListNode(1,ListNode(1))
+    head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
     tester = Solution()
+    print("---")
     print_linked_list(head)
+    print("---")
     reversed_head = tester.reverseList(head)
     print_linked_list(reversed_head)
 
