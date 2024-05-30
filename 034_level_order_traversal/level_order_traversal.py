@@ -8,12 +8,10 @@ class TreeNode:
 class Solution:
     def levelOrder(self, root: Optional[TreeNode], depth_count = None, traversal = None) -> int:
         if depth_count == None:
-            depth_count = -1
+            depth_count = 0
             traversal  = []
-            if not root:
-                return []
-            
-        depth_count += 1
+        if not root:
+            return []
         
         if len(traversal) == depth_count:
             traversal.append([])
@@ -21,9 +19,9 @@ class Solution:
         traversal[depth_count].append(root.val)
 
         if root.left:
-            self.levelOrder(root.left, depth_count, traversal)
+            self.levelOrder(root.left, depth_count + 1, traversal)
         if root.right:
-            self.levelOrder(root.right, depth_count, traversal)  
+            self.levelOrder(root.right, depth_count + 1, traversal)  
         
         return traversal
         
